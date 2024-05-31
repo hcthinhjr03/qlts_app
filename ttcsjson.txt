@@ -1,0 +1,36 @@
+{
+    "username": "hcthinh123",
+    "password": "123456"
+}
+
+
+{
+    "propertyType": "realEstate",
+    "propertyStatus": "active",
+    "propertyName": "Chung cư Vinhome Metropolis",
+    "description": "Căn hộ 2 phòng ngủ, 2 vệ sinh, diện tích 70m2",
+    "value": 3000000000,
+    "purchaseDate": "2010-03-18T16:48:00.000+00:00",
+    "location": "Quận Nam Từ Liêm, Hà Nội",
+    "images": "image1.jpg",
+    "supplier": "Vinhome",
+    "warranty":  "2010-03-18T16:48:00.000+00:00",
+    "serialNumber": "ABC123456789",
+    "notes": "Nhà mới, chưa sử dụng"
+}
+
+
+{
+    "propertyType": "vehicle",
+    "propertyStatus": "active",
+    "propertyName": "Ô tô Toyota Camry 2023",
+    "description": "Xe sedan 5 chỗ, màu trắng",
+    "value": 2000000000,
+    "purchaseDate": "2010-03-18T16:48:00.000+00:00",
+    "location": "Quận Nam Từ Liêm, Hà Nội",
+    "images": "image7.jpg",
+    "supplier": "Toyota",
+    "warranty":  "2010-03-18T16:48:00.000+00:00",
+    "serialNumber": "ABC133457689",
+    "notes": "Odo 30 vạn"
+}

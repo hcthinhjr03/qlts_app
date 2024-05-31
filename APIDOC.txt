@@ -1,0 +1,169 @@
+API_DOMAIN = 'http://localhost:2607/'
+
+--------------------USERS------------------------
+userSchema = {
+	username: {type: String},  
+  	password: {type: String},  
+  	first_name: { type: String },
+  	last_name: { type: String },
+  	location: { type: String },
+}
+
+//Register
+PATH: API_DOMAIN/user/register
+METHOD: POST
+HEADER: Content-Type: "application/json"
+	Accept: "application/json"
+BODY: {
+	username: {type: String},  
+  	password: {type: String},  
+  	first_name: { type: String },
+  	last_name: { type: String },
+  	location: { type: String }
+      }
+
+RESPONE: 200: {message: "Register Successfully"}
+	 401: {message: "User already exist"}
+	 402: {message: "Fail!"}
+	 500: {message: "Internal server error"}
+
+//Login
+PATH: API_DOMAIN/user/login
+METHOD: POST
+HEADER: Content-Type: "application/json"
+	Accept: "application/json"
+BODY: {
+	username: {type: String},  
+  	password: {type: String},  
+      }
+
+RESPONE: 200: {token: "abcxyz...."}
+	 401: {message: "Invalid username or password"}
+	 500: {message: "Internal server error"}
+
+//Logout
+PATH: API_DOMAIN/user/logout
+METHOD: POST
+HEADER: Content-Type: "application/json"
+	Accept: "application/json"
+	Authorization : `Bearer ${token}`
+BODY: null
+
+RESPONE: 200: {message: "Logged out successfully"}
+
+//Get User By Id
+PATH: API_DOMAIN/user/:id
+METHOD: GET
+HEADER: 
+BODY: 
+
+RESPONE: 200: {user}
+	 404: {message: "User not found"}
+	 500: {message: "Internal server error"}
+
+
+
+
+---------------------------PROPERTY--------------------------
+propertySchema = {
+	user_id: mongoose.Schema.Types.ObjectId,
+  	propertyType: {
+    		type: String,
+    		required: true,
+    		enum: ["realEstate", "vehicle", "stock", "other"], 
+  	},
+  	propertyStatus: {
+    		type: String,
+    		required: true,
+    		enum: ["active", "inactive", "new", "old", "inUse", "inStorage"]
+  	},
+  	propertyName: {
+    		type: String,
+    		required: true,
+    		trim: true,
+  	},
+  	description: {
+    		type: String,
+    		trim: true,
+  	},
+  	value: {
+    		type: Number,
+    		required: true,
+  	},
+  	purchaseDate: {
+    		type: Date,
+    		required: true,
+  	},
+  	location: {
+    		type: String,
+    		trim: true,
+  	},
+  	images: {
+    		type: String,
+    		trim: true
+  	},
+  	supplier: {
+    		type: String,
+    		trim: true,
+  	},
+  	warranty: {
+    		type: Date,
+  	},
+  	serialNumber: {
+    		type: String,
+    		unique: true,
+    		trim: true,
+  	},
+  	notes: {
+    		type: String,
+    		trim: true,
+  	},
+}
+
+
+
+//create new property
+PATH: API_DOMAIN/property/create
+METHOD: POST
+HEADER: 
+	Authorization : `Bearer ${token}`
+BODY: formdata (    KEY                |            VALUE       )
+	       (  propertyType			    text        )
+	       (  propertyStatus                    text        )
+	       (  propertyName                      text        )
+               (  description                       text        )
+               (  value                             text        )
+               (  purchaseDate                      text        )
+               (  location                          text        )
+               (  images                            File        )
+               (  supplier                          text        )
+               (  warranty                          text        )
+               (  serialNumber                      text        )
+               (  notes                             text        )
+RESPONE: 200: {newProperty}
+	 401: {message: "Property already exist!"}
+	 402: {message: "Fail!"}
+	 500: {message: "Internal server error"}
+
+
+// Get property by id
+PATH: API_DOMAIN/property/detail/:id
+METHOD: GET
+HEADER: 
+BODY: 
+
+RESPONE: 200: {property}
+	 404: {message: "Property not found"}
+	 500: {message: "Internal server error"}
+
+//Get list property of user
+PATH: API_DOMAIN/property/list
+METHOD: GET
+HEADER: 
+	Authorization : `Bearer ${token}`
+BODY: 
+
+RESPONE: 200: {listProperty}
+	 404: {message: "User have no property"}
+	 500: {message: "Internal server error"}
+
